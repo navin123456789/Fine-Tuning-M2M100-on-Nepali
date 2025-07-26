@@ -1,2 +1,125 @@
 # Fine-Tuning-M2M100-on-Nepali
 Breaking the Language Barrier: Fine-Tuning M2M100 for English to Nepali Translation
+
+# Fine-Tuning facebook/m2m100_418M for English-to-Nepali Translation
+
+This project fine-tunes Meta's multilingual machine translation model [`facebook/m2m100_418M`](https://huggingface.co/facebook/m2m100_418M) on an English-to-Nepali dataset to improve performance on low-resource translation tasks.
+
+## 📌 Objective
+
+To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepali** translation using supervised fine-tuning and evaluate performance using BLEU, SacreBLEU, and BERTScore metrics.
+
+---
+
+## 📁 Dataset
+
+- Source: Custom dataset (`english-to-nepali`) from Hugging Face.
+- Size: ~63,000 examples (based on `train`, `validation`, and `test` splits).
+- Format: JSON/CSV with `translation` fields containing `en` and `ne` keys.
+
+---
+
+## 🚀 Model
+
+- Base model: [`facebook/m2m100_418M`](https://huggingface.co/facebook/m2m100_418M)
+- Type: Sequence-to-sequence Transformer
+- Tokenizer: `M2M100Tokenizer`
+
+---
+
+## ⚙️ Hyperparameters for Fine-Tuning
+
+| Hyperparameter           | Value              |
+|--------------------------|--------------------|
+| Model                    | facebook/m2m100_418M |
+| Max source length        | 128                |
+| Max target length        | 128                |
+| Batch size per device    | 8                  |
+| Gradient accumulation    | 2                  |
+| Optimizer                | AdamW              |
+| Learning rate            | 3e-5               |
+| Weight decay             | 0.01               |
+| Epochs                   | 5                  |
+| Warmup steps             | 500                |
+| Evaluation strategy      | Steps              |
+| Evaluation steps         | 1000               |
+| Save steps               | 1000               |
+| Logging steps            | 500                |
+| Early stopping           | Enabled (patience = 3) |
+
+---
+
+
+## Example Translations
+
+### Without Fine-Tuning
+
+#### Easy
+- **English:** My name is Gyawali.  
+- **Nepali (Predicted):** मेरो नाम जियावाली हो ।
+
+#### Medium
+- **English:** She likes to read books in the evening after finishing her homework.  
+- **Nepali (Predicted):** घरबेटीले जहाँ पायो त्यहाँ पकाउन दिँदैन ।
+
+#### Hard
+- **English:** Despite the economic challenges, the government is planning to invest more in renewable energy sources to ensure a sustainable future.  
+- **Nepali (Predicted):** नयाँ संविधानको घोषणा, आन्दोलनको निराशाजनक बैठान, तीनै तहको निर्वाचन पश्चातको देश र मधेसको स्थितिको वास्तविक विश्लेषण हुनु आवश्यक छ ।
+
+---
+
+## After Fine-Tuning
+
+### --- Easy ---
+- **English:** My name is Gyawali.  
+- **Reference Nepali:** मेरो नाम ज्ञवली हो।  
+- **Predicted Nepali:** मेरो नाम गिवाली हो।
+
+
+---
+
+### --- Medium ---
+- **English:** he likes to read books in the evening after finishing her homework.  
+- **Reference Nepali:** उ गृहकार्य सकेपछि साँझ किताब पढ्न मन पराउँछ।  
+- **Predicted Nepali:** उनी आफ्नो गृह कार्य समाप्त भएपछि साँझमा किताब पढ्न मन पराउँछन्।
+
+
+---
+
+### --- Hard ---
+- **English:** Despite the economic challenges, the government is planning to invest more in renewable energy sources to ensure a sustainable future.  
+- **Reference Nepali:** आर्थिक चुनौतीहरूका बाबजुद, सरकारले दिगो भविष्य सुनिश्चित गर्न नवीकरणीय ऊर्जा स्रोतहरूमा थप लगानी गर्ने योजना बनाइरहेको छ।  
+- **Predicted Nepali:** आर्थिक चुनौतिका बाबजुद सरकारले दिगो भविष्यलाई सुनिश्चित गर्न नवीकरणीय ऊर्जाको स्रोतमा बढी लगानी गर्ने योजना रहेको छ।
+
+
+---
+## Evaluation Metrics
+
+| Difficulty | BLEU (NLTK) | SacreBLEU | BERTScore F1 | Notes |
+|------------|-------------|-----------|---------------|-------|
+| Easy       | 0.1862      | 35.36     | 0.8944        | Minor spelling error |
+| Medium     | 0.1161      | 13.95     | 0.8889        | Formal paraphrasing |
+| Hard       | 0.1441      | 16.61     | 0.9069        | Great semantic accuracy |
+
+- **BLEU**: Penalizes rephrasing and grammar differences
+- **SacreBLEU**: Better standardized BLEU variant
+- **BERTScore**: High semantic similarity indicates good translation quality
+
+---
+
+## 🏁 How to Run
+
+### 1. Clone this repo & install dependencies
+```bash
+git clone https://github.com/yourusername/english-nepali-m2m100.git
+cd english-nepali-m2m100
+pip install -r requirements.txt
+
+## Conclusion
+
+- The base model (`facebook/m2m100_418M`) struggled with accurate translation before fine-tuning, especially in medium and hard cases.
+- After fine-tuning:
+  - **Semantic accuracy** (BERTScore) improved significantly across all difficulty levels.
+  - **Lexical accuracy** (BLEU, SacreBLEU) improved, though remained relatively low due to paraphrasing and stylistic changes.
+- This suggests the model is **learning meaningful translation patterns**, even if exact phrasing differs.
+
