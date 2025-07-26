@@ -1,8 +1,6 @@
 # Fine-Tuning-M2M100-on-Nepali
 Breaking the Language Barrier: Fine-Tuning M2M100 for English to Nepali Translation
 
-# Fine-Tuning facebook/m2m100_418M for English-to-Nepali Translation
-
 This project fine-tunes Meta's multilingual machine translation model [`facebook/m2m100_418M`] on an English-to-Nepali dataset to improve performance on low-resource translation tasks.
 
 ##  Objective
