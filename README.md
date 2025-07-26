@@ -61,7 +61,7 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ## After Fine-Tuning
 
-### --- Easy ---
+### Easy
 - **English:** My name is Gyawali.  
 - **Reference Nepali:** मेरो नाम ज्ञवली हो।  
 - **Predicted Nepali:** मेरो नाम गिवाली हो।
@@ -69,7 +69,7 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ---
 
-### --- Medium ---
+###  Medium 
 - **English:** he likes to read books in the evening after finishing her homework.  
 - **Reference Nepali:** उ गृहकार्य सकेपछि साँझ किताब पढ्न मन पराउँछ।  
 - **Predicted Nepali:** उनी आफ्नो गृह कार्य समाप्त भएपछि साँझमा किताब पढ्न मन पराउँछन्।
@@ -77,7 +77,7 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ---
 
-### --- Hard ---
+###  Hard
 - **English:** Despite the economic challenges, the government is planning to invest more in renewable energy sources to ensure a sustainable future.  
 - **Reference Nepali:** आर्थिक चुनौतीहरूका बाबजुद, सरकारले दिगो भविष्य सुनिश्चित गर्न नवीकरणीय ऊर्जा स्रोतहरूमा थप लगानी गर्ने योजना बनाइरहेको छ।  
 - **Predicted Nepali:** आर्थिक चुनौतिका बाबजुद सरकारले दिगो भविष्यलाई सुनिश्चित गर्न नवीकरणीय ऊर्जाको स्रोतमा बढी लगानी गर्ने योजना रहेको छ।
@@ -98,19 +98,11 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ---
 
-## 🏁 How to Run
-
-### 1. Clone this repo & install dependencies
-```bash
-git clone https://github.com/yourusername/english-nepali-m2m100.git
-cd english-nepali-m2m100
-pip install -r requirements.txt
-
 ## Conclusion
 
 - The base model (`facebook/m2m100_418M`) struggled with accurate translation before fine-tuning, especially in medium and hard cases.
 - After fine-tuning:
-  - **Semantic accuracy** (BERTScore) improved significantly across all difficulty levels.
-  - **Lexical accuracy** (BLEU, SacreBLEU) improved, though remained relatively low due to paraphrasing and stylistic changes.
+  **Semantic accuracy** (BERTScore) improved significantly across all difficulty levels.
+  **Lexical accuracy** (BLEU, SacreBLEU) improved, though remained relatively low due to paraphrasing and stylistic changes.
 - This suggests the model is **learning meaningful translation patterns**, even if exact phrasing differs.
 
