@@ -3,23 +3,24 @@ Breaking the Language Barrier: Fine-Tuning M2M100 for English to Nepali Translat
 
 # Fine-Tuning facebook/m2m100_418M for English-to-Nepali Translation
 
-This project fine-tunes Meta's multilingual machine translation model [`facebook/m2m100_418M`](https://huggingface.co/facebook/m2m100_418M) on an English-to-Nepali dataset to improve performance on low-resource translation tasks.
+This project fine-tunes Meta's multilingual machine translation model [`facebook/m2m100_418M`] on an English-to-Nepali dataset to improve performance on low-resource translation tasks.
 
-## 📌 Objective
+##  Objective
 
 To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepali** translation using supervised fine-tuning and evaluate performance using BLEU, SacreBLEU, and BERTScore metrics.
 
 ---
 
-## 📁 Dataset
+## Dataset
 
-- Source: Custom dataset (`english-to-nepali`) from Hugging Face.
-- Size: ~63,000 examples (based on `train`, `validation`, and `test` splits).
-- Format: JSON/CSV with `translation` fields containing `en` and `ne` keys.
+- **Name:** [`CohleM/english-to-nepali`](https://huggingface.co/datasets/CohleM/english-to-nepali)
+- **Source:** Hugging Face Datasets Hub
+- **Languages:** English (`en`) → Nepali (`ne`)
+- **Format:** JSON format with `"translation"` field containing both `"en"` and `"ne"` keys
 
 ---
 
-## 🚀 Model
+## Model
 
 - Base model: [`facebook/m2m100_418M`](https://huggingface.co/facebook/m2m100_418M)
 - Type: Sequence-to-sequence Transformer
@@ -27,27 +28,19 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ---
 
-## ⚙️ Hyperparameters for Fine-Tuning
+## Hyperparameters for Fine-Tuning
 
-| Hyperparameter           | Value              |
-|--------------------------|--------------------|
-| Model                    | facebook/m2m100_418M |
-| Max source length        | 128                |
-| Max target length        | 128                |
-| Batch size per device    | 8                  |
-| Gradient accumulation    | 2                  |
-| Optimizer                | AdamW              |
-| Learning rate            | 3e-5               |
-| Weight decay             | 0.01               |
-| Epochs                   | 5                  |
-| Warmup steps             | 500                |
-| Evaluation strategy      | Steps              |
-| Evaluation steps         | 1000               |
-| Save steps               | 1000               |
-| Logging steps            | 500                |
-| Early stopping           | Enabled (patience = 3) |
+| Hyperparameter           | Value                  |
+|--------------------------|------------------------|
+| Model                    | facebook/m2m100_418M   |
+| Batch size per device    | 8                      |
+| Optimizer                | AdamW                  |
+| Learning rate            | 2e-5                   |
+| Epochs                   | 1                      |
+| Total training steps     | `len(train_dataloader) * 1` |
+| Learning rate scheduler  | Linear                 |
+| Device                   | CUDA if available      |
 
----
 
 
 ## Example Translations
