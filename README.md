@@ -63,7 +63,6 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ### Easy
 - **English:** My name is Gyawali.  
-- **Reference Nepali:** मेरो नाम ज्ञवली हो।  
 - **Predicted Nepali:** मेरो नाम गिवाली हो।
 
 
@@ -71,7 +70,6 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ###  Medium 
 - **English:** he likes to read books in the evening after finishing her homework.  
-- **Reference Nepali:** उ गृहकार्य सकेपछि साँझ किताब पढ्न मन पराउँछ।  
 - **Predicted Nepali:** उनी आफ्नो गृह कार्य समाप्त भएपछि साँझमा किताब पढ्न मन पराउँछन्।
 
 
@@ -79,7 +77,6 @@ To adapt the pretrained `m2m100_418M` model specifically for **English ⇄ Nepal
 
 ###  Hard
 - **English:** Despite the economic challenges, the government is planning to invest more in renewable energy sources to ensure a sustainable future.  
-- **Reference Nepali:** आर्थिक चुनौतीहरूका बाबजुद, सरकारले दिगो भविष्य सुनिश्चित गर्न नवीकरणीय ऊर्जा स्रोतहरूमा थप लगानी गर्ने योजना बनाइरहेको छ।  
 - **Predicted Nepali:** आर्थिक चुनौतिका बाबजुद सरकारले दिगो भविष्यलाई सुनिश्चित गर्न नवीकरणीय ऊर्जाको स्रोतमा बढी लगानी गर्ने योजना रहेको छ।
 
 
